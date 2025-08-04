@@ -30,7 +30,6 @@ For Example , if my first 5 searches go like
   4) Amazing Spider Man
   5) SpiderMan xyz
 
-Then the algorithm that i built increases the counter of all the words that has keyword of spiderman and displays that in top with the heading saying that 
-## Most Searched Movies
+Then the algorithm that i built increases the counter of all the words that has keyword of spiderman and displays that in top with the heading saying that ## Most Searched Movies
 
 
