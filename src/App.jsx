@@ -1,5 +1,6 @@
 import React, { useState , useEffect }  from 'react'
 import Search from './Components/Search.jsx'
+import Spinner from './Components/Spinner.jsx';
 
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
@@ -8,7 +9,7 @@ const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${API_KEY}`
+    Authorization:  `Bearer ${API_KEY}`
   }
 }
 const App = () => {
@@ -17,7 +18,8 @@ const App = () => {
   const [Loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
   const fetchMovies = async () => {
-    setLoading(true);
+    setLoading(false);
+    
     setErrorMessage('');
     try {
       const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc`;
@@ -40,7 +42,9 @@ const App = () => {
       
     }
     finally {
+      
       setLoading(false)
+      
     }
   }
 
@@ -60,13 +64,13 @@ const App = () => {
         </header>
 
         <section className="all-movies">
-          <h2>All Movies</h2>
-          {Loading ? (<p className='loading'>Loading...</p>) : errorMessage ? (
+          <h2 className='mt-[40px]'>All Movies</h2>
+          {Loading ? <Spinner/>: errorMessage ? (
             <p className='error'>{errorMessage}</p>
           ) : (
             <ul>
               {movies.map((movie) => (
-                <p className='text-white'>{movie.title}</p>
+                <p key={movie.id} className='text-white'>{movie.title}</p>
                 ))}
             </ul>
           )}
